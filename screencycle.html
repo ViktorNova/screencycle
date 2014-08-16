@@ -1,0 +1,51 @@
+<!doctype html>
+
+  <html>
+     <head>
+        <title></title>
+        <style type="text/css">
+		html, body, #f { 
+			height: 100%;
+			width: 100%;
+			min-height: 100%;
+			margin:0;
+			background: #000000;
+			border: none;
+			overflow: hidden;
+			}
+		#f  { 
+			margin:-10px;
+			}
+        </style>
+        <script type="text/javascript">
+           var urls = [
+              "index.php"
+              ,"showBoard.php"
+              ,"showBoardTerm.php"
+           ];
+
+
+
+           function showUrl(idx) {
+
+              var f = document.getElementById("f");
+
+              // call the next load  after 10 seconds only after 
+              // this iframe loads
+              f.onload = function()   {
+                 var next = ++idx % urls.length;
+                 setTimeout(function(){
+                    showUrl(next);
+                 }, 10000);  
+              }
+              // set the src
+              f.src = urls[idx];
+           }
+
+        </script>
+     </head>
+     <body onload="showUrl(0)" class="app-chrome">
+        <iframe id="f" src="about:blank"></iframe>
+     </body>
+     
+  </html>
